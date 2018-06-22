@@ -34,18 +34,7 @@ Vagrant.configure(2) do |config|
       vb.memory = 1024
       vb.cpus = 2
       vb.gui = false
-  end
-
-  config.vm.provider "virtualbox" do |v|
-    v.linked_clone = true
-  end
-
-  config.vm.define "client1" do |v|
-    v.vm.box = "ubuntu/xenial64"
-    v.vm.hostname = "client1"
-    v.vm.network "private_network",
-        ip: "192.168.5.9",
-        virtualbox__intnet: "mgmt"
+      vb.linked_clone = true
   end
 
   config.vm.define "vsrx1" do |v|
@@ -64,6 +53,14 @@ Vagrant.configure(2) do |config|
         virtualbox__intnet: "mgmt"
     v.vm.network "private_network",
         virtualbox__intnet: "vsrx2-r1"
+  end
+
+  config.vm.define "client1" do |v|
+    v.vm.box = "ubuntu/xenial64"
+    v.vm.hostname = "client1"
+    v.vm.network "private_network",
+        ip: "192.168.5.9",
+        virtualbox__intnet: "mgmt"
   end
 
 end
