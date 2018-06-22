@@ -35,6 +35,7 @@ Vagrant.configure(2) do |config|
       vb.cpus = 2
       vb.gui = false
       vb.linked_clone = true
+      vb.customize ["modifyvm", :id, "--nicpromisc2", "deny"]
   end
 
   config.vm.define "vsrx1" do |v|
